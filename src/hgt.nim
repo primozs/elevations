@@ -29,8 +29,6 @@ import std/endians
 import std/math
 import std/strutils
 import pkg/zippy
-import pkg/zippy/tarballs
-import pkg/zippy/gzip
 
 proc getElvVal(file: File, row, col, size: int): int16 =
   try:
@@ -145,7 +143,4 @@ when isMainModule:
   let path = getCurrentDir() / "tests" / "N51" / "N51E013.hgt.gz"
   assert hgtGetElevation(path1, 51.3, 13.4) == 101
   assert hgtGetElevation(path, 51.3, 13.4) == 101
-  # echo hgtGetElevation(path1, 51.0, 13.0)
-  # echo hgtGetElevation(path, 51.0, 13.0)
-  # echo hgtGetElevation(path, 45.9689, 14.2999) # cca 292
 

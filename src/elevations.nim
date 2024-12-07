@@ -1,4 +1,3 @@
-# {.push raises: [].}
 import std/os
 import std/strformat
 import std/math
@@ -123,12 +122,11 @@ proc getElevation*(tileset: HgtTileset, locations: seq[seq[float]]): seq[
 
 when isMainModule:
   assert getTileFilePath(51.3, 13.4) == "N51/N51E013.hgt.gz"
+
   let tileset = initHgtTileset(dir = getCurrentDir() / "skadi")
-  # echo tileset.repr
-  # let tilePath = waitFor tileset.getTile(51.3, 13.4)
-  echo tileset.getElevation(51.3, 13.4)
-  echo tileset.getElevation(45.9689, 14.2999)
-  echo tileset.getElevation(45.9715, 14.2515)
-  echo tileset.getElevation(@[@[14.2515, 45.9715], @[13.4, 51.3]])
+  assert tileset.getElevation(51.3, 13.4) == 101
+  assert tileset.getElevation(45.9689, 14.2999) == 293
+  assert tileset.getElevation(45.9715, 14.2515) == 733
+  assert tileset.getElevation(@[@[14.2515, 45.9715], @[13.4, 51.3]]) == @[733, 101]
 
 
